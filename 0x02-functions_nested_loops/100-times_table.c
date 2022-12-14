@@ -1,43 +1,49 @@
 #include "main.h"
-
 /**
- * print_times_table - to print the n times table
- * @n: any given integer
- * Return: a multiplication table if n is less than 15
+ * print_times_table - prints times table
+ * @n : times table to use
+ * Return: void
  */
 
 void print_times_table(int n)
 {
-	if (n <= 15 && n >= 0)
+	int a = 0, rep, b;
+
+	if (n < 0 || n > 15)
+		return;
+
+	while (a <= n)
 	{
-		int i, j, k;
-
-		for (i = 0; i < n; i++)
+		for (b = 0; b <= n; b++)
 		{
-			for (j = 0; j < n; j++)
+			rep = a * b;
+			if  (b == 0)
+				_putchar('0' + rep);
+			else if (rep < 10)
 			{
-				k = j * i;
-				if (j == 0)
-				{
-					_putchar(k + '0');
-				}
-
-				if (k < n && j != 0)
-				{
-					_putchar(',');
-					_putchar(' ');
-					_putchar(' ');
-					_putchar(k + '0');
-				} else if (k >= n)
-				{
-					_putchar(',');
-					_putchar(' ');
-					_putchar((k / 10) + '0');
-					_putchar((k % 10) + '0');
-				}
+				_putchar(' ');
+				_putchar(' ');
+				_putchar('0' + rep);
 			}
-			_putchar('\n');
+			else if (rep < 100)
+			{
+				_putchar(' ');
+				_putchar('0' + rep / 10);
+				_putchar('0' + rep % 10);
+			}
+			else
+			{
+				_putchar('0' + rep / 100);
+				_putchar('0' + (rep - 100) / 10);
+				_putchar('0' + rep % 10);
+			}
+			if (b < n)
+			{
+				_putchar(',');
+				_putchar(' ');
+			}
 		}
+		_putchar('\n');
+		a++;
 	}
-
 }
